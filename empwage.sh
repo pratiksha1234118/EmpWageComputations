@@ -1,9 +1,22 @@
 echo "welcome to employee wage computation"
-ispresent=1
-randomCheck=$(( RANDOM % 2 ))
-if [ $ispresent -eq $randomCheck ]
+#uc1
+Attendence=$(( $RANDOM % 2 + 1 ))
+if [ $Attendence -eq 1 ]
 then
-	echo " employee is present"
+employ="Present"
+echo $employ
 else
-	echo "not present"
+employ="Absent"
+echo $employ
+fi
+#uc2
+if [ "$employ" == "Present" ]
+then
+Employwageperhour=20
+worktime=8
+dailyemploywage=$(($Employwageperhour * $worktime))
+echo $dailyemploywage
+else
+dailyemploywage=0
+echo $dailyemploywage
 fi

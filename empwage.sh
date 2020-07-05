@@ -37,52 +37,6 @@ echo "Wage of $name who does part time is : "$parttimeemploywage
 fi
 
 #uc4
-while true
-do
-echo "1.Wages of the employ who does full time"
-echo "2.Wages of the employ who does part time"
-echo "3.Exit"
-read -p "Enter your choice from above statements : " ch
-
-case $ch in
-"1")
-	
-	if [ "$employ" == "Present" ]
-	then	
-	Employwageperhour=20
-	worktime=8
-	dailyemploywage=$(($Employwageperhour*$worktime))
-	echo "Wage of $name for full time is : "$dailyemploywage
-	else
-	echo "The employ $name is : " $employ 
-	fi
-;;
-
-"2")
-	
-	
-	if [ "$employ" == "Present" ]
-	then	
-	read -p "Enter the name of the employ : " name
-	partworktime=$(($worktime/2))
-	parttimeemploywage=$(($Employwageperhour*$partworktime))
-	echo "Wage of $name for part time is : "$parttimeemploywage
-	else
-	echo "The employ $name is : "$employ
-	fi 
-;;
-
-"3")
-exit
-;;
-
-*) 
-echo invalid choice 
-;;
-
-esac
-done
-
  #uc5
 
 if [ "$employ" == "Present" ]
@@ -134,55 +88,32 @@ echo "Wage of $name is : "$wage
 fi
 
 
-
-
-#---------------------------------------------------------------------------
-
-
-
-
 WorkingDaysofMonth=20
 wagesofamonth=$(($dailyemploywage*$WorkingDaysofMonth))
 echo "Wages Per Month of $name is : " $wagesofamonth
 
 #uc6
-dailyemploywage()
-{
-Employwageperhour=20
-dailyemploywage=$(($Employwageperhour * $hourss))
-}
-parttimeemploywage()
-{
-Employwageperhour=20
-partime=$(($hourss/2))
-parttimeemploywage=$(($Employwageperhour * $partime))
-}
-checkifAvailable() 
-{
-person=$(($RANDOM%3+1))
-if [ $person -eq 1 ]
-then
-dailyemploywage
-employ=$dailyemploywage
-elif [ $person -eq 2 ]
-then
-parttimeemploywage
-employ=$parttimeemploywage
-elif [ $person -eq 3 ]
-then
-employ=0
-fi
-}
 
-totalwage=0
-read -p "Enter the number of days you want to work  : " days
-read -p "Enter how much hours you want to work in $days days: " hourss
-echo $days
-for((i=0; i<=20; i++))
+read -p "Enter the name of the new employ to check the wages : " newname
+read -p "Enter the hours you work : " time
+newworktime=0
+wages=0
+days=0
+hoursleft=0
+dailyemploywages=160
+Employwageperhours=20
+i=1
+while [ $newworktime -lt $time ]
 do
-checkifAvailable
-day[$i]=$employ
-totalwage=$(($totalwage+${day[$i]}))
-echo day $i " = " ${day[$i]} " : " $totalwage
+newworktime=$(($newworktime+1))
+if [ $(($newworktime%8)) -eq 0 ]
+then
+days=$(($days+1))
+wages=$(($wages+$dailyemploywages))
+fi
 done
-echo "Total wages of $name in $days days of work is : "$totalwag
+hoursleft=$(($newworktime%8))
+totalwages=$((($hoursleft * $Employwageperhours) + $wages))
+echo "Total wages of $newname is : $totalwages "
+echo "The days and hours work done is : $days days and $hoursleft hours "
+

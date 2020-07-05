@@ -93,3 +93,27 @@ wagesofamonth=$(($dailyemploywage*$WorkingDaysofMonth))
 echo "Wages Per Month of $name is : " $wagesofamonth
 
 
+#uc6
+read -p "Enter the name of the new employ to check the wages : " newname
+read -p "Enter the hours you work : " time
+newworktime=0
+wages=0
+days=0
+hoursleft=0
+dailyemploywages=160
+Employwageperhours=20
+i=1
+while [ $newworktime -lt $time ]
+do
+newworktime=$(($newworktime+1))
+if [ $(($newworktime%8)) -eq 0 ]
+then
+days=$(($days+1))
+wages=$(($wages+$dailyemploywages))
+fi
+done
+hoursleft=$(($newworktime%8))
+totalwages=$((($hoursleft * $Employwageperhours) + $wages))
+echo "Total wages of $newname is : $totalwages "
+echo "The days and hours work done is : $days days and $hoursleft hours "
+

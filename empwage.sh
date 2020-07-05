@@ -37,6 +37,7 @@ echo "Wage of $name who does part time is : "$parttimeemploywage
 fi
 
 #uc4
+#uc5
 if [ "$employ" == "Present" ]
 then
 echo "1.Wages of the employ who does full time"

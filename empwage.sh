@@ -191,7 +191,7 @@ do
 checkifAvailable
 day[$i]=$employ
 totalwage=$(($totalwage+${day[$i]}))
-echo day $i " = " ${day[$i]} " : " $totalwage
+echo "Total wages till 100 hours is : $totalwages "
 done
 echo "Total wages of $name in $days days of work is : "$totalwage
 
